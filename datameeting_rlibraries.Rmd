@@ -40,7 +40,6 @@ What is/isn't a library is session dependent
 
 We can have multiple libraries in a given session
 
---
 
 ---
 #  `r emo::ji('books')` Libraries `r emo::ji('books')`
@@ -65,6 +64,13 @@ The `.libPaths` function is used to show which folders are currently on the libr
 
 ```
 
+--
+
+When you run `library("package_name")`, `R` looks in the folders listed in `.libPaths()` in that order for the package `package_name` 
+
+--
+
+When you run `install.packages("package_name")`, `R` will try to install the package to the FIRST folder listed in `.libPaths()`
 ---
 class: center, middle
 
@@ -74,7 +80,15 @@ class: center, middle
 
 --
 
-Code contained in an `.Rprofile` that is sourced into `R` every time you start a session 
+Plain text file called `".Rprofile"`
+
+--
+
+ Note: name has to be exact. `r emo::ji("cross_mark")` NO FILE EXTENSIONS (E.G. ".TXT") ALLOWED! `r emo::ji("cross_mark")`
+
+--
+
+Contains `R` code that is (invisibly) sourced into your `R` session on start-up
 
 --
 
@@ -88,7 +102,7 @@ to your `.Rprofile`.
 
 --
 
-How does `R` know where to find your `.Rprofile`?
+# `r emo::ji('magnifying_glass_tilted_right')` How does `R` know where to find your `.Rprofile`? `r emo::ji('magnifying_glass_tilted_left')`
 
 
 ---
@@ -102,7 +116,11 @@ Variables defined at the `operating system` level
 
 --
 
-Can check environment variables with `Sys.getenv()`
+Affect how programs behave
+
+--
+
+From within `R`, can check environment variables with `Sys.getenv()`
 
 ```{r}
 
@@ -112,7 +130,7 @@ Sys.getenv("HOME")
 
 --
 
-Can (temporarily) set environment variables with `Sys.setenv'
+Can also (temporarily) set environment variables with `Sys.setenv()`
 
 ```{r}
 
@@ -121,4 +139,56 @@ Sys.setenv(MY_AUTH_TOKEN = "dasofj3r24ijijsdfjasiji24j2ij4ijijwisasd")
 Sys.getenv("MY_AUTH_TOKEN")
 ```
 
+---
+# `r emo::ji('globe_showing_Americas')` Environment Variables `r emo::ji('globe_showing_Americas')`
 
+--
+
+On startup, `R` looks for a number of environment variables to configure the session
+
+--
+
+Details at `help(Startup)`
+
+--
+
+To find the `.Rprofile`, `R` looks in the following places (in this order)
+
+--
+
+1. the file path in an environment variable called `R_PROFILE_USER`
+
+--
+
+2. the current directory
+
+--
+
+3. the user's home directory (see what yours is using `Sys.getenv("HOME")`)
+
+
+---
+class: center, middle
+
+
+# Wrapping up
+
+--
+
+You can make just about any folder be an `R` library
+
+--
+
+-For your personal library, make sure you have read/write permissions
+
+--
+
+-Best to have a folder exclusively dedicated to housing `R` packages
+
+--
+
+Automatically point `R` to your personal library on start-up using an `.Rprofile`
+
+--
+
+Use `R_PROFILE_USER` to tell `R` where to look for your `.Rprofile`
