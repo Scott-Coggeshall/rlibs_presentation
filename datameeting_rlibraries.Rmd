@@ -1,0 +1,124 @@
+---
+title: "`r emo::ji('books')` Libraries `r emo::ji('books')`, <br> `r emo::ji('woman_technologist')` User Profiles `r emo::ji('man_technologist')`, <br> and <br> `r emo::ji('globe_showing_Americas')` Environment Variables `r emo::ji('globe_showing_Americas')` <br> in <img src='r-programming-language.png' style='width: 5%'>"
+author: 
+  - "Scott Coggeshall"
+date: '`r Sys.Date()`'
+output:
+  xaringan::moon_reader:
+    css: xaringan-themer.css
+    nature:
+      slideNumberFormat: "%current%"
+      highlightStyle: github
+      highlightLines: true
+      ratio: 16:9
+      countIncrementalSlides: true
+---
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer)
+style_solarized_dark()
+```
+class: middle, center
+#  `r emo::ji('books')` Libraries `r emo::ji('books')`
+
+--
+
+An `R` library is a folder that
+
+--
+
+ -contains installed versions of `R` packages
+ 
+--
+ 
+ -is on the library search path set by `.libPaths`
+
+--
+
+What is/isn't a library is session dependent
+
+--
+
+We can have multiple libraries in a given session
+
+--
+
+---
+#  `r emo::ji('books')` Libraries `r emo::ji('books')`
+--
+
+The `.libPaths` function is used to show which folders are currently on the library search path...
+```{r}
+
+.libPaths(new = )
+
+```
+
+--
+
+...and to add new folders to the search path
+
+```{r}
+
+.libPaths(c("D:/SCOTT/library2", .libPaths()))
+
+.libPaths()
+
+```
+
+---
+class: center, middle
+
+# `r emo::ji('woman_technologist')` User Profiles `r emo::ji('man_technologist')`
+
+
+
+--
+
+Code contained in an `.Rprofile` that is sourced into `R` every time you start a session 
+
+--
+
+The easiest way to create and maintain your own personal `R` library is to add 
+
+```{r echo = TRUE, eval = FALSE}
+.libPaths("path-to-my-library")
+```
+
+to your `.Rprofile`. 
+
+--
+
+How does `R` know where to find your `.Rprofile`?
+
+
+---
+class: middle, center
+
+# `r emo::ji('globe_showing_Americas')` Environment Variables `r emo::ji('globe_showing_Americas')`
+
+--
+
+Variables defined at the `operating system` level 
+
+--
+
+Can check environment variables with `Sys.getenv()`
+
+```{r}
+
+Sys.getenv("HOME")
+
+```
+
+--
+
+Can (temporarily) set environment variables with `Sys.setenv'
+
+```{r}
+
+Sys.setenv(MY_AUTH_TOKEN = "dasofj3r24ijijsdfjasiji24j2ij4ijijwisasd")
+
+Sys.getenv("MY_AUTH_TOKEN")
+```
+
+
